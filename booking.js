@@ -7,7 +7,7 @@ $(function(){
         url: "rooms.json",
         success: function(rooms){
             $.each(rooms, function(i, room){
-                $("#rooms").append("<li>"+ room.name + "</li>");    
+                $("#rooms").append("<tr><td>" + room.name + "</td>" + "<td>" + room.location + "</td>" + "<td>" + room.persons + "</td></tr>");    
             });
         },
         error: function(){
