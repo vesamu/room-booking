@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Simple room booking system</title>
-    <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
-    <script src="booking.js"></script>
+  <meta charset="UTF-8">
+  <title>Simple room booking system</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="booking.js"></script>
 </head>
 <body>
-    <h1>Rooms</h1>
-    <table id="rooms">
-        <tr>
-            <th>name</th>
-            <th>location</th>
-            <th>capacity</th>
-        </tr>
-    </table> 
+  <h1>Rooms</h1>
+  <table>
+    <tr id="rooms">
+      <td>
+        <ul>
+          <li>name</li>
+          <li>location</li>
+          <li>capacity</li>
+        </ul>
+      </td>
+    </tr>
+  </table> 
+  <h1>Add reservation</h1>
+  <p>Date: <input type="text" id="datepicker"></p>
 </body>            
 </html>    
