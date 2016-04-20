@@ -42,5 +42,21 @@ $(function(){
       }
     });
   });
+  
+   //Get reservations data from file
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "http://localhost/booking/reservations.json",
+    success: function(reservations){
+      $.each(reservations, function(i, reservation){
+        //$("#reservations").append("<li>" + reservation.room + "</li>" + "<li>" + reservation.date + "</li>");   
+        $("#reservations").append("<li>" + reservation.room + " " + reservation.date + "</li>"); 
+      });
+    },
+    error: function(){
+      alert("Error on reading reservations data.");
+    }              
+  });
    
 });
