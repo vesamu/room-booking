@@ -3,6 +3,7 @@ $(function(){
   //initialize datepicker
   $( "#datepicker" ).datepicker({
     firstDay: 1,
+    dateFormat: "dd.mm.yy",
     onSelect: function(dateText, inst) {
       $newDate = "date=" + dateText;
     }
