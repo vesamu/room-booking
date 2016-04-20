@@ -16,7 +16,8 @@ $(function(){
     url: "http://localhost/booking/rooms.json",
     success: function(rooms){
       $.each(rooms, function(i, room){
-        $("#rooms").append("<td><ul><li>" + room.name + "</li>" + "<li>" + room.location + "</li>" + "<li>" + room.persons + "</li></ul></td>");    
+        $("#rooms").append("<td><ul><li>" + room.name + "</li>" + "<li>" + room.location + "</li>" + "<li>" + room.persons + "</li></ul></td>");   
+        $("#room").append("<option value=" + room.name + ">" + room.name + "</option>");
       });
     },
     error: function(){
