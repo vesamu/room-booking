@@ -4,7 +4,11 @@
   fseek($file, -1, SEEK_END);
   $txt = ",{\"room\": \"" . $_POST["room"] . "\",";
   fwrite($file, $txt);
-  $txt = " \"date\": \"" . $_POST["date"] . "\"}\n]";
+  $txt = " \"date\": \"" . $_POST["date"] . "\",";
+  fwrite($file, $txt);
+  $txt = " \"start\": \"" . $_POST["start"] . "\",";
+  fwrite($file, $txt);
+   $txt = " \"end\": \"" . $_POST["end"] . "\"}\n]";
   fwrite($file, $txt);
   fclose($file);
 ?> 

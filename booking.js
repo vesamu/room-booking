@@ -1,13 +1,22 @@
 $(function(){
   
   //initialize datepicker
-  $( "#datepicker" ).datepicker({
+  $("#datepicker").datepicker({
     firstDay: 1,
     dateFormat: "dd.mm.yy",
-    onSelect: function(dateText, inst) {
+    onSelect: function(dateText, inst){
       $newDate = "date=" + dateText;
     }
   });
+  
+  //Populate start and end selections
+  (function(){
+    for(var i = 8; i <= 16; i++){
+      var j = i + 1;
+      $("#startTime").append("<option value='" + i +"'>" + i + ":00" + "</option>"); 
+      $("#endTime").append("<option value='" + j +"'>" + j + ":00" + "</option>"); 
+    }
+  })();
    
   //Get rooms data from file
   $.ajax({
@@ -28,7 +37,9 @@ $(function(){
   //Post new reservation to PHP script
   $("#saveReservation").on("click", function(){  
     var $selectedRoom = $("#room");
-    var $newReservation = $newDate + "&room=" +$selectedRoom.val();
+    var $startTime = $("#startTime");
+    var $endTime = $("#endTime");
+    var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val();
     $.ajax({
       type: "POST",
       dataType: "text",
@@ -42,21 +53,20 @@ $(function(){
       }
     });
   });
-  
-   //Get reservations data from file
+ 
+  //Get reservations data from file
   $.ajax({
     type: "GET",
     dataType: "json",
     url: "http://localhost/booking/reservations.json",
     success: function(reservations){
-      $.each(reservations, function(i, reservation){
-        //$("#reservations").append("<li>" + reservation.room + "</li>" + "<li>" + reservation.date + "</li>");   
-        $("#reservations").append("<li>" + reservation.room + " " + reservation.date + "</li>"); 
+      $.each(reservations, function(i, reservation){  
+        $("#reservations").append("<li>" + reservation.room + " " + reservation.date + " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
       });
     },
     error: function(){
       alert("Error on reading reservations data.");
-    }              
+    }             
   });
    
 });
