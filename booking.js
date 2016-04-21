@@ -3,6 +3,7 @@ $(function(){
   //initialize datepicker
   $("#datepicker").datepicker({
     firstDay: 1,
+    minDate: 0,
     dateFormat: "dd.mm.yy",
     onSelect: function(dateText, inst){
       $newDate = "date=" + dateText;
@@ -13,16 +14,31 @@ $(function(){
   (function(){
     for(var i = 8; i <= 16; i++){
       var j = i + 1;
-      $("#startTime").append("<option value='" + i +"'>" + i + ":00" + "</option>"); 
-      $("#endTime").append("<option value='" + j +"'>" + j + ":00" + "</option>"); 
+      $("#startTime").append("<option value='" + i + "'>" + i + ":00" + "</option>"); 
+      $("#endTime").append("<option value='" + j + "'>" + j + ":00" + "</option>"); 
     }
   })();
-   
+  
+  //disaple end times before start time
+  $("#startTime").on("change click", function(){
+    var $minEnd = $("#startTime").val();   
+    for(var i = 9; i <= 16; i++){
+      $("#endTime option[value='" + i + "']").attr("selected", false);
+        if(i <= $minEnd){
+          $("#endTime option[value='" + i + "']").attr("disabled", true);
+        } else {
+          $("#endTime option[value='" + i + "']").attr("disabled", false); 
+        }
+    }
+    $("#endTime option:not([disabled])").first().attr("selected", true); 
+  });
+ 
+  
   //Get rooms data from file
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost/booking/rooms.json",
+    url: "http://localhost/booking/rooms.json", //replace with server path
     success: function(rooms){
       $.each(rooms, function(i, room){
         $("#rooms").append("<td><ul><li>" + room.name + "</li>" + "<li>" + room.location + "</li>" + "<li>" + room.persons + "</li></ul></td>");   
@@ -43,7 +59,7 @@ $(function(){
     $.ajax({
       type: "POST",
       dataType: "text",
-      url: "http://localhost/booking/save.php",
+      url: "http://localhost/booking/save.php", //replace with server path
       data: $newReservation,
       success: function(newReservation) {
         alert("ok");
@@ -58,7 +74,7 @@ $(function(){
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost/booking/reservations.json",
+    url: "http://localhost/booking/reservations.json", //replace with server path
     success: function(reservations){
       $.each(reservations, function(i, reservation){  
         $("#reservations").append("<li>" + reservation.room + " " + reservation.date + " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
