@@ -2,7 +2,9 @@
   //Save reservation to file
   $file = fopen("reservations.json", "r+") or die("Unable to open file!");
   fseek($file, -1, SEEK_END);
-  $txt = ",{\"room\": \"" . $_POST["room"] . "\",";
+  $txt = ",{\"id\": \"" . $_POST["id"] . "\",";
+  fwrite($file, $txt);
+  $txt = "\"room\": \"" . $_POST["room"] . "\",";
   fwrite($file, $txt);
   $txt = " \"date\": \"" . $_POST["date"] . "\",";
   fwrite($file, $txt);
