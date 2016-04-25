@@ -1,5 +1,8 @@
 $(function(){
   
+  //Array for conflict checking
+  var $currentReservations = [];
+  
   //initialize datepicker
   $("#datepicker").datepicker({
     firstDay: 1,
@@ -33,7 +36,6 @@ $(function(){
     $("#endTime option:not([disabled])").first().attr("selected", true); 
   });
  
-  
   //Get rooms data from file
   $.ajax({
     type: "GET",
@@ -50,24 +52,42 @@ $(function(){
     }              
   });
   
-  //Post new reservation to PHP script
+  //Check and save new reservation
   $("#saveReservation").on("click", function(){  
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
     var $endTime = $("#endTime");
     var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val();
+    var $noConflict = false;
+    //Check conflicts
+    $.each($currentReservations, function(i, currentReservation){
+      if(Number(currentReservation.end) <= Number($startTime.val()) ||
+         Number($endTime.val()) <= Number(currentReservation.start) ||
+         currentReservation.room != $selectedRoom.val() ||
+         currentReservation.date != $("#datepicker").val()){
+           $noConflict = true;
+        } else {
+          $noConflict = false;
+          alert("Conflict with reservation: " + currentReservation.room + " " + currentReservation.date + 
+          " " + currentReservation.start + ":00 " + currentReservation.end + ":00");
+          return false;
+        }
+    });
+    //Save if no conflicts
+    if($noConflict){
     $.ajax({
       type: "POST",
       dataType: "text",
       url: "http://localhost/booking/save.php", //replace with server path
       data: $newReservation,
       success: function(newReservation) {
-        alert("ok");
+        alert("Reservation saved");
       },
       error: function(){
         alert("Error on saving reservation.");
       }
     });
+    }
   });
  
   //Get reservations data from file
@@ -76,6 +96,7 @@ $(function(){
     dataType: "json",
     url: "http://localhost/booking/reservations.json", //replace with server path
     success: function(reservations){
+      $currentReservations = reservations;
       $.each(reservations, function(i, reservation){  
         $("#reservations").append("<li>" + reservation.room + " " + reservation.date + " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
       });
