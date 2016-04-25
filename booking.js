@@ -57,7 +57,7 @@ $(function(){
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
     var $endTime = $("#endTime");
-    var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val();
+    var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $currentReservations.length;
     var $noConflict = false;
     //Check conflicts
     $.each($currentReservations, function(i, currentReservation){
@@ -98,7 +98,8 @@ $(function(){
     success: function(reservations){
       $currentReservations = reservations;
       $.each(reservations, function(i, reservation){  
-        $("#reservations").append("<li>" + reservation.room + " " + reservation.date + " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
+        $("#reservations").append("<li>" + reservation.room + " " + reservation.date + 
+        " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
       });
     },
     error: function(){
