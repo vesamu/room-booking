@@ -43,7 +43,8 @@ $(function(){
     url: "http://localhost/booking/rooms.json", //replace with server path
     success: function(rooms){
       $.each(rooms, function(i, room){
-        $("#rooms").append("<td><ul><li>" + room.name + "</li>" + "<li>" + room.location + "</li>" + "<li>" + room.persons + "</li></ul></td>");   
+        //$("#rooms").append("<td><ul><li>" + room.name + "</li>" + "<li>" + room.location + "</li>" + "<li>" + room.persons + "</li></ul></td>");  
+        $("#rooms").append("<tr><td>" + room.name + "</td>" + "<td>" + room.location + "</td>" + "<td>" + room.persons + "</td></tr>");   
         $("#room").append("<option value=" + room.name + ">" + room.name + "</option>");
       });
     },
@@ -98,8 +99,8 @@ $(function(){
     success: function(reservations){
       $currentReservations = reservations;
       $.each(reservations, function(i, reservation){  
-        $("#reservations").append("<li>" + reservation.room + " " + reservation.date + 
-        " " + reservation.start + ":00 " + reservation.end + ":00<button class='delete' id=" + reservation.id + ">Delete</button></li>"); 
+        $("#reservations").append("<li class='list-group-item'><button class='delete btn btn-danger' id=" + reservation.id + ">Delete</button>" + reservation.room + " " + reservation.date + 
+        " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
       });
     },
     error: function(){

@@ -2,36 +2,76 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Simple room booking system</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+  integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="booking.js"></script>
 </head>
 <body>
-  <h1>Rooms</h1>
-  <table>
-    <tr id="rooms">
-      <td id="first">
-        <ul>
-          <li>name</li>
-          <li>location</li>
-          <li>capacity</li>
-        </ul>
-      </td>
-    </tr>
-  </table> 
-  <h1>Reservations</h1>
-  <ul id="reservations">
-  </ul>   
-  <h1>Add reservation</h1>
-  <form>
-    <input type="text" id="datepicker" required>
-    <select id="startTime"></select>
-    <select id="endTime"></select>
-    <select id="room"></select>   
-    <input type="submit" id="saveReservation">   
-  </form>    
+  <div class="container">
+  <h1>Room booking system</h1>
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Rooms</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Capasity</th>
+          </tr>
+        </thead>
+        <tbody id="rooms">
+        </tbody>
+      </table> 
+    </div>
+  </div>
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Add reservation</h3>
+    </div>
+    <div class="panel-body">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="datepicker">Date:</label>
+          <input type="text" class="form-control" id="datepicker" required>
+        </div>
+        <div class="form-group">
+          <label for="startTime">Start:</label>
+          <select class="form-control" id="startTime"></select>
+        </div>
+        <div class="form-group">
+          <label for="endTime">End:</label>
+          <select class="form-control" id="endTime"></select>
+        </div>
+        <div class="form-group">
+          <label for="room">Room:</label>
+          <select class="form-control" id="room"></select>  
+        </div>  
+        <button type="submit" class="btn btn-success" id="saveReservation">Save</button>
+      </form>   
+    </div>
+  </div>
+   
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Reservations</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group" id="reservations">
+      </ul>
+    </div>
+  </div>
+</div>       
 </body>            
 </html>    
