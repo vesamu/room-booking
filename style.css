@@ -1,0 +1,27 @@
+/*
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+table {
+    border: 1px solid black;
+    
+}
+
+td, tr {
+  padding: 0;
+  margin: 0;
+}
+
+#first {
+  background-color: lightblue;
+}
+*/
+li {
+  background-color: aquamarine;
+  margin: 5px;
+  list-style-type: none;
+  padding: 5px;
+}

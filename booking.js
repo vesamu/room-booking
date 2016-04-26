@@ -57,7 +57,7 @@ $(function(){
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
     var $endTime = $("#endTime");
-    var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $currentReservations.length;
+    var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $.now();
     var $noConflict = false;
     //Check conflicts
     $.each($currentReservations, function(i, currentReservation){
@@ -99,12 +99,25 @@ $(function(){
       $currentReservations = reservations;
       $.each(reservations, function(i, reservation){  
         $("#reservations").append("<li>" + reservation.room + " " + reservation.date + 
-        " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
+        " " + reservation.start + ":00 " + reservation.end + ":00<button class='delete' id=" + reservation.id + ">Delete</button></li>"); 
       });
     },
     error: function(){
       alert("Error on reading reservations data.");
     }             
+  });
+  
+  //Delete reservation
+  $("#reservations").delegate(".delete", "click", function(){ 
+    $.ajax({
+      type: "POST",
+      dataType: "text",
+      url: "http://localhost/booking/delete.php", //replace with server path
+      data: "id=" + $(this).attr("id"),
+      success: function(){
+        location.reload();
+      }
+    });
   });
    
 });
