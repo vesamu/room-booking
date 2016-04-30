@@ -4,6 +4,7 @@ $(function(){
   var $currentReservations = [];
   
   //initialize datepicker
+  $("#datepicker").val("Select date");
   $("#datepicker").datepicker({
     firstDay: 1,
     minDate: 0,
@@ -55,6 +56,9 @@ $(function(){
   
   //Check and save new reservation
   $("#saveReservation").on("click", function(){  
+    if($("#datepicker").val() == "Select date"){
+      alert("Please select date.");
+    }
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
     var $endTime = $("#endTime");
