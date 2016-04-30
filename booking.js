@@ -43,8 +43,7 @@ $(function(){
     dataType: "json",
     url: "http://localhost/booking/rooms.json", //replace with server path
     success: function(rooms){
-      $.each(rooms, function(i, room){
-        //$("#rooms").append("<td><ul><li>" + room.name + "</li>" + "<li>" + room.location + "</li>" + "<li>" + room.persons + "</li></ul></td>");  
+      $.each(rooms, function(i, room){  
         $("#rooms").append("<tr><td>" + room.name + "</td>" + "<td>" + room.location + "</td>" + "<td>" + room.persons + "</td></tr>");   
         $("#room").append("<option value=" + room.name + ">" + room.name + "</option>");
       });
@@ -57,7 +56,7 @@ $(function(){
   //Check and save new reservation
   $("#saveReservation").on("click", function(){  
     if($("#datepicker").val() == "Select date"){
-      alert("Please select date.");
+      $("#dateMissing").modal();
     }
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
