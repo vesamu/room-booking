@@ -60,6 +60,7 @@ $(function(){
     var $endTime = $("#endTime");
     var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $.now();
     var $noConflict = false;
+    
     //Check conflicts
     $.each($currentReservations, function(i, currentReservation){
       if(Number(currentReservation.end) <= Number($startTime.val()) ||
@@ -83,6 +84,7 @@ $(function(){
       data: $newReservation,
       success: function(newReservation) {
         alert("Reservation saved");
+        location.reload();
       },
       error: function(){
         alert("Error on saving reservation.");
