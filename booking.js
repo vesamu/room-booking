@@ -9,7 +9,7 @@ $(function(){
     minDate: 0,
     dateFormat: "dd.mm.yy",
     onSelect: function(dateText, inst){
-      $newDate = "date=" + dateText;
+      $newDate = dateText;
     }
   });
   
@@ -58,7 +58,7 @@ $(function(){
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
     var $endTime = $("#endTime");
-    var $newReservation = $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $.now();
+    var $newReservation = "date=" + $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $.now();
     var $noConflict = false;
     
     //Check conflicts
