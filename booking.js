@@ -108,9 +108,11 @@ $(function(){
     url: "http://localhost/booking/reservations.json", //replace with server path
     success: function(reservations){
       $currentReservations = reservations;
-      $.each(reservations, function(i, reservation){  
-        $("#reservations").append("<li class='list-group-item'><button class='delete btn btn-danger' id=" + reservation.id + ">Delete</button>" + reservation.room + " " + reservation.date + 
-        " " + reservation.start + ":00 " + reservation.end + ":00</li>"); 
+      $.each(reservations, function(i, reservation){
+        if(reservation.id){  
+          $("#reservations").append("<li class='list-group-item'><button class='delete btn btn-danger' id=" + reservation.id + ">Delete</button>" + reservation.room + " " + reservation.date + 
+          " " + reservation.start + ":00 " + reservation.end + ":00</li>");
+        }
       });
     },
     error: function(){
