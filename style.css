@@ -2,6 +2,12 @@
   background-color: white;
 }
 
+.ui-datepicker-header {
+  background: #428bca;
+  color: white;
+  border-color: #428bca;
+}  
+
 .form-control {
   cursor: pointer;
 }
