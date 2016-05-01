@@ -2,5 +2,3 @@ A simple application for booking rooms.
 This is just my ajax and json exercise.
 
 You need webserver with PHP to run application.
-
-Reservations.json breaks when first reservation is deleted. Will fix that soon.
