@@ -49,14 +49,16 @@ $(function(){
       });
     },
     error: function(){
-      alert("Error on reading rooms data.");
+      $("#errorText").text("Error on reading rooms data.");
+      $("#errorMessage").modal();
     }              
   });
   
   //Check and save new reservation
   $("#saveReservation").on("click", function(){  
     if($("#datepicker").val() == "Select date"){
-      $("#dateMissing").modal();
+      $("#errorText").text("Please select date first.");
+      $("#errorMessage").modal();
     }
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
@@ -73,8 +75,9 @@ $(function(){
            $noConflict = true;
         } else {
           $noConflict = false;
-          alert("Conflict with reservation: " + currentReservation.room + " " + currentReservation.date + 
-          " " + currentReservation.start + ":00 " + currentReservation.end + ":00");
+          $("#errorText").text("Conflict with reservation:");
+          $("#errorDetails").text(currentReservation.room + " " + currentReservation.date + " " + currentReservation.start + ":00 " + currentReservation.end + ":00");
+          $("#errorMessage").modal();
           return false;
         }
     });
@@ -86,11 +89,13 @@ $(function(){
       url: "http://localhost/booking/save.php", //replace with server path
       data: $newReservation,
       success: function(newReservation) {
-        alert("Reservation saved");
+        $("#successText").text("Reservation saved");
+        $("#successMessage").modal();
         location.reload();
       },
       error: function(){
-        alert("Error on saving reservation.");
+        $("#errorText").text("Error on saving reservation.");
+        $("#errorMessage").modal();
       }
     });
     }
@@ -109,7 +114,8 @@ $(function(){
       });
     },
     error: function(){
-      alert("Error on reading reservations data.");
+      $("#errorText").text("Error on reading reservations data.");
+      $("#errorMessage").modal();
     }             
   });
   

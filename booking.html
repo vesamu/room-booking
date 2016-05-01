@@ -48,7 +48,7 @@
         <div class="form-group has-feedback">
           <label for="datepicker">Date:</label>
           <input type="text" class="form-control" id="datepicker" readonly>
-          <span class="glyphicon glyphicon-calendar form-control-feedback"></span>  
+          <span class="glyphicon glyphicon-calendar form-control-feedback text-primary"></span>  
         </div>
         <div class="form-group">
           <label for="startTime">Start:</label>
@@ -78,14 +78,30 @@
     </div>
   </div>
   
-  <!-- Modal for date missing error-->
-  <div class="modal" id="dateMissing" role="dialog">
+  <!-- Modal for error message -->
+  <div class="modal" id="errorMessage" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="panel panel-danger">
         <div class="panel-heading">
-          <h3 class="panel-title text-center">Please select date first.</h3>
+          <h3 class="panel-title text-center" id="errorText"></h3>
         </div>
         <div class="panel-body text-center">
+          <p id="errorDetails"></p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal for success message -->
+  <div class="modal" id="successMessage" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title text-center" id="successText"></h3>
+        </div>
+        <div class="panel-body text-center">
+          <p id="successDetails"></p>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

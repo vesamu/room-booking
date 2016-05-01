@@ -5,3 +5,7 @@
 .form-control {
   cursor: pointer;
 }
+
+.modal {
+  top: 30%;
+}
