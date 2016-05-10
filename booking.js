@@ -112,6 +112,14 @@ $(function(){
         if(reservation.id){  
           $("#reservations").append("<li class='list-group-item'><button class='delete btn btn-danger' id=" + reservation.id + ">Delete</button>" + reservation.room + " " + 
           moment(reservation.date).format("DD.MM.YYYY") + " " + reservation.start + ":00 " + reservation.end + ":00</li>");
+          if(reservation.start < 10) {
+            reservation.start = "0" + reservation.start;
+          }
+          if(reservation.end < 10) {
+            reservation.end = "0" + reservation.end;
+          }
+          $("#calendar").fullCalendar("renderEvent", {title: reservation.room, start: "" + reservation.date + "T" + reservation.start + ":00:00", end: reservation.date + "T" +
+          reservation.end + ":00:00"}, "stick");
         }
       });
     },
@@ -141,15 +149,7 @@ $(function(){
     minTime: "08:00:00",
     maxTime: "18:00:00",
     height: "auto",
-    allDaySlot: false,
-    events: [
-      {
-        title: "Test event",
-		    allDay: false,
-        start: "2016-05-10T10:00:00",
-	      end: "2016-05-10T13:00:00"
-      }
-    ]    
+    allDaySlot: false
   });
    
 });
