@@ -136,16 +136,20 @@ $(function(){
   
   //Booking calendar
   $("#calendar").fullCalendar({
-    firstDay: 1,
+    lang: "fi",
 	  defaultView: "agendaWeek",
-      events: [
-        {
-          title: "Test event",
-		      allDay: false,
-          start: "2016-05-06T08:00:00",
-	        end: "2016-05-06T013:00:00"
-        }
-      ]
-    });
+    minTime: "08:00:00",
+    maxTime: "18:00:00",
+    height: "auto",
+    allDaySlot: false,
+    events: [
+      {
+        title: "Test event",
+		    allDay: false,
+        start: "2016-05-10T10:00:00",
+	      end: "2016-05-10T13:00:00"
+      }
+    ]    
+  });
    
 });
