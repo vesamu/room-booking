@@ -8,7 +8,7 @@ $(function(){
   $("#datepicker").datepicker({
     firstDay: 1,
     minDate: 0,
-    dateFormat: "dd.mm.yy",
+    dateFormat: "yy-mm-dd",
     onSelect: function(dateText, inst){
       $newDate = dateText;
     }
@@ -110,8 +110,8 @@ $(function(){
       $currentReservations = reservations;
       $.each(reservations, function(i, reservation){
         if(reservation.id){  
-          $("#reservations").append("<li class='list-group-item'><button class='delete btn btn-danger' id=" + reservation.id + ">Delete</button>" + reservation.room + " " + reservation.date + 
-          " " + reservation.start + ":00 " + reservation.end + ":00</li>");
+          $("#reservations").append("<li class='list-group-item'><button class='delete btn btn-danger' id=" + reservation.id + ">Delete</button>" + reservation.room + " " + 
+          moment(reservation.date).format("DD.MM.YYYY") + " " + reservation.start + ":00 " + reservation.end + ":00</li>");
         }
       });
     },
