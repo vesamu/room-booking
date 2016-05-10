@@ -133,5 +133,19 @@ $(function(){
       }
     });
   });
+  
+  //Booking calendar
+  $("#calendar").fullCalendar({
+    firstDay: 1,
+	  defaultView: "agendaWeek",
+      events: [
+        {
+          title: "Test event",
+		      allDay: false,
+          start: "2016-05-06T08:00:00",
+	        end: "2016-05-06T013:00:00"
+        }
+      ]
+    });
    
 });
