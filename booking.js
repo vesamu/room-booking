@@ -45,7 +45,7 @@ $(function(){
     success: function(rooms){
       $.each(rooms, function(i, room){  
         $("#rooms").append("<tr><td>" + room.name + "</td>" + "<td>" + room.location + "</td>" + "<td>" + room.persons + "</td></tr>");   
-        $("#room").append("<option value=" + room.name + ">" + room.name + "</option>");
+        $("#room").append("<option value=" + room.name + " data-color=" + room.color + ">" + room.name + "</option>");
       });
     },
     error: function(){
@@ -63,7 +63,8 @@ $(function(){
     var $selectedRoom = $("#room");
     var $startTime = $("#startTime");
     var $endTime = $("#endTime");
-    var $newReservation = "date=" + $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $.now();
+    var $calColor = $("#room").find(":selected").data("color");
+    var $newReservation = "date=" + $newDate + "&room=" + $selectedRoom.val() + "&start=" + $startTime.val() + "&end=" + $endTime.val() + "&id=" + $.now() + "&color=" + $calColor;
     var $noConflict = false;
     
     //Check conflicts
@@ -108,7 +109,7 @@ $(function(){
     url: "http://localhost/booking/reservations.json", //replace with server path
     success: function(reservations){
       $currentReservations = reservations;
-      $.each(reservations, function(i, reservation){
+      $.each(reservations, function(i, reservation){ 
         if(reservation.id){  
           $("#reservations").append("<li class='list-group-item'><button class='delete btn btn-danger' id=" + reservation.id + ">Delete</button>" + reservation.room + " " + 
           moment(reservation.date).format("DD.MM.YYYY") + " " + reservation.start + ":00 " + reservation.end + ":00</li>");
@@ -118,8 +119,9 @@ $(function(){
           if(reservation.end < 10) {
             reservation.end = "0" + reservation.end;
           }
+          //View reservation on calendar
           $("#calendar").fullCalendar("renderEvent", {title: reservation.room, start: "" + reservation.date + "T" + reservation.start + ":00:00", end: reservation.date + "T" +
-          reservation.end + ":00:00"}, "stick");
+          reservation.end + ":00:00", color: reservation.color}, "stick");
         }
       });
     },

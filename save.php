@@ -6,6 +6,8 @@
   fwrite($file, $txt);
   $txt = "\"room\": \"" . $_POST["room"] . "\",";
   fwrite($file, $txt);
+  $txt = "\"color\": \"" . $_POST["color"] . "\",";
+  fwrite($file, $txt);
   $txt = " \"date\": \"" . $_POST["date"] . "\",";
   fwrite($file, $txt);
   $txt = " \"start\": \"" . $_POST["start"] . "\",";

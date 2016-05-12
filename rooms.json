@@ -2,17 +2,20 @@
     "id": 1,
     "name": "Room1",
     "location": "A1",
-    "persons": 10
+    "persons": 10,
+    "color": "red"
 },
 {
     "id": 2,
     "name": "Room2",
     "location": "A2",
-    "persons": 20
+    "persons": 20,
+    "color": "blue"
 },
 {
     "id": 3,
     "name": "Room3",
     "location": "A3",
-    "persons": 30
+    "persons": 30,
+    "color": "green"
 }]
