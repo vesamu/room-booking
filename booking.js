@@ -1,5 +1,5 @@
 $(function(){
-  
+
   //Array for conflict checking
   var $currentReservations = [];
   
@@ -151,7 +151,8 @@ $(function(){
     minTime: "08:00:00",
     maxTime: "18:00:00",
     height: "auto",
-    allDaySlot: false
+    allDaySlot: false,
+    weekends: false
   });
    
 });
