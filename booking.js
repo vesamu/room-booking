@@ -5,6 +5,14 @@ $(function(){
   
   //Initialize tabs
   $( "#tabs" ).tabs();
+  //Remember selected tab after page refresh
+  $( "#tabs" ).tabs({
+    activate: function( event, ui ) {
+      sessionStorage.activeTab = $( "#tabs" ).tabs( "option", "active" );
+      $('#calendar').fullCalendar('render');
+    }
+  });
+  $( "#tabs" ).tabs( "option", "active", sessionStorage.activeTab );
   
   //Initialize datepicker
   $("#datepicker").val("Select date");
