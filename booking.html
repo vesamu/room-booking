@@ -72,35 +72,19 @@
   </div>
     
   <!-- Tabs for list and calendar view -->
-  <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#calendarView" data-toggle="tab">Calendar</a></li>
-    <li role="presentation"><a href="#listView" data-toggle="tab">List</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="calendarView">
-      <!-- Panel for calendar --> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Reservations</h3>
-        </div>
-        <div class="panel-body">
-          <div id="calendar"></div> 
-        </div>
-      </div>  
-    </div> 
-    <div class="tab-pane" id="listView">
-      <!-- Panel for reservations list --> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Reservations</h3>
-        </div>
-        <div class="panel-body">
-          <ul class="list-group" id="reservations"></ul>
-        </div>
-      </div>
-    </div> 
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Calendar</a></li>
+      <li><a href="#tabs-2">List</a></li>
+    </ul>
+    <div id="tabs-1">
+      <div id="calendar"></div>
+    </div>
+    <div id="tabs-2">
+      <ul class="list-group" id="reservations"></ul>
+    </div>
   </div>
- 
+   
   <!-- Modal for error message -->
   <div class="modal" id="errorMessage" role="dialog">
     <div class="modal-dialog modal-sm">

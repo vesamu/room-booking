@@ -3,7 +3,10 @@ $(function(){
   //Array for conflict checking
   var $currentReservations = [];
   
-  //initialize datepicker
+  //Initialize tabs
+  $( "#tabs" ).tabs();
+  
+  //Initialize datepicker
   $("#datepicker").val("Select date");
   $("#datepicker").datepicker({
     beforeShowDay: $.datepicker.noWeekends,
@@ -155,5 +158,5 @@ $(function(){
     allDaySlot: false,
     weekends: false
   });
-   
+  
 });
