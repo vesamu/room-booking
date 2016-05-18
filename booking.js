@@ -6,6 +6,7 @@ $(function(){
   //initialize datepicker
   $("#datepicker").val("Select date");
   $("#datepicker").datepicker({
+    beforeShowDay: $.datepicker.noWeekends,
     firstDay: 1,
     minDate: 0,
     dateFormat: "yy-mm-dd",
