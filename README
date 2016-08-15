@@ -1,4 +1,3 @@
 A simple application for booking rooms.
-This project started as my ajax and json exercise, but it has now extended.
 
-You need webserver with PHP to run application.
+Next step will be database connection.
